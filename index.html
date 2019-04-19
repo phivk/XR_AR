@@ -20,20 +20,89 @@
     <!--<a-box position='0 0.5 0' material='opacity: 0.5;'></a-box> -->
 
     <a-assets>
-        <!-- cant get this to work, becuase i dont kno how to implement glob-->
-        <!--<img id="placardrand" src="{{ collect(File::glob(./images/*.{jpg,png,gif}', GLOB_BRACE))->random() }}">-->
-        <img id="placard" src="./images/img-01.jpg">
+        <img id="placard-0" src="./images/img-00.jpg" class="placard">
+        <img id="placard-1" src="./images/img-01.jpg" class="placard">
+        <img id="placard-2" src="./images/img-02.jpg" class="placard">
+        <img id="placard-3" src="./images/img-03.jpg" class="placard">
+        <img id="placard-4" src="./images/img-04.jpg" class="placard">
+        <img id="placard-5" src="./images/img-05.jpg" class="placard">
+        <img id="placard-6" src="./images/img-06.jpg" class="placard">
+        <img id="placard-7" src="./images/img-07.jpg" class="placard">
+        <img id="placard-8" src="./images/img-08.jpg" class="placard">
+        <img id="placard-9" src="./images/img-09.jpg" class="placard">
+        <img id="placard-10" src="./images/img-10.jpg" class="placard">
+        <img id="placard-11" src="./images/img-11.jpg" class="placard">
+        <img id="placard-12" src="./images/img-12.jpg" class="placard">
+        <img id="placard-13" src="./images/img-13.jpg" class="placard">
+        <img id="placard-14" src="./images/img-14.jpg" class="placard">
+        <img id="placard-15" src="./images/img-15.jpg" class="placard">
+        <img id="placard-16" src="./images/img-16.jpg" class="placard">
+        <img id="placard-17" src="./images/img-17.jpg" class="placard">
+        <img id="placard-18" src="./images/img-18.jpg" class="placard">
+        <img id="placard-19" src="./images/img-19.jpg" class="placard">
+        <img id="placard-20" src="./images/img-20.jpg" class="placard">
+        <img id="placard-21" src="./images/img-21.jpg" class="placard">
+        <img id="placard-22" src="./images/img-22.jpg" class="placard">
+        <img id="placard-23" src="./images/img-23.jpg" class="placard">
+        <img id="placard-24" src="./images/img-24.jpg" class="placard">
+        <img id="placard-25" src="./images/img-25.jpg" class="placard">
+        <img id="placard-26" src="./images/img-26.jpg" class="placard">
+        <img id="placard-27" src="./images/img-27.jpg" class="placard">
+        <img id="placard-28" src="./images/img-28.jpg" class="placard">
+        <img id="placard-29" src="./images/img-29.jpg" class="placard">
+        <img id="placard-30" src="./images/img-30.jpg" class="placard">
+        <img id="placard-31" src="./images/img-31.jpg" class="placard">
+        <img id="placard-32" src="./images/img-32.jpg" class="placard">
+        <img id="placard-33" src="./images/img-33.jpg" class="placard">
+        <img id="placard-34" src="./images/img-34.jpg" class="placard">
+        <img id="placard-35" src="./images/img-35.jpg" class="placard">
+        <img id="placard-36" src="./images/img-36.jpg" class="placard">
+        <img id="placard-37" src="./images/img-37.jpg" class="placard">
+        <img id="placard-38" src="./images/img-38.jpg" class="placard">
+        <img id="placard-39" src="./images/img-39.jpg" class="placard">
+        <img id="placard-40" src="./images/img-40.jpg" class="placard">
+        <img id="placard-41" src="./images/img-41.jpg" class="placard">
+        <img id="placard-42" src="./images/img-42.jpg" class="placard">
+        <img id="placard-43" src="./images/img-43.jpg" class="placard">
+        <img id="placard-44" src="./images/img-44.jpg" class="placard">
+        <img id="placard-45" src="./images/img-45.jpg" class="placard">
+        <img id="placard-46" src="./images/img-46.jpg" class="placard">
+        <img id="placard-47" src="./images/img-47.jpg" class="placard">
+        <img id="placard-48" src="./images/img-48.jpg" class="placard">
+        <img id="placard-49" src="./images/img-49.jpg" class="placard">
+        <img id="placard-50" src="./images/img-50.jpg" class="placard">
+        <img id="placard-51" src="./images/img-51.jpg" class="placard">
+        <img id="placard-52" src="./images/img-52.jpg" class="placard">
+        <img id="placard-53" src="./images/img-53.jpg" class="placard">
+        <img id="placard-54" src="./images/img-54.jpg" class="placard">        
     </a-assets>
 
 
     <!-- Textured plane parallel to ground. #-->
-   <a-plane src="#placard" position="0 0.2 0" height="1" width="1" rotation="-90 0 0" shadow></a-plane>
+    <a-plane id="plane" src="#placard-0" position="0 0.2 0" height="1" width="1" rotation="-90 0 0" shadow></a-plane>
 
 
     <!-- define a camera which will move according to the marker position -->
     <!-- <a-marker-camera preset='hiro'></a-marker-camera>-->
     <a-marker-camera type='pattern' url='./XRAR-marker.patt'></a-marker-camera>
     </a-scene>
+
+    <script type="text/javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+
+        var upto = document.querySelectorAll('.placard').length;
+        var intervalID = window.setInterval(function () {
+            set_random_placard(upto);
+        }, 3000);
+        
+        function set_random_placard(upto) {
+            var randomIndex = Math.round(Math.random()*upto);
+            var randomId = "#placard-" + randomIndex.toString();
+            console.log("randomId", randomId);
+            document.querySelector('#plane').setAttribute('src', randomId);
+        }
+    });
+    </script>
   </body>
 
 </html>
